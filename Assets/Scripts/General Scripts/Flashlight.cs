@@ -16,10 +16,10 @@ public class Flashlight : MonoBehaviour
 
     private Light flashlightLight;
     private AudioSource audioSource;
-
     private float batteryLevel = 100f;
-    private float batteryDrainRate = 50f;
-
+    private float batteryDrainRate = 100f / 120f;
+    // private float batteryDrainRate = 15f;
+    private Collider flashlightCollider;
     private void Start()
     {
         flashlightLight = GetComponentInChildren<Light>();
@@ -27,7 +27,8 @@ public class Flashlight : MonoBehaviour
 
         flashlightLight.enabled = false;
         UpdateBatteryUI();
-
+        flashlightCollider = GetComponent<Collider>();
+        flashlightCollider.enabled = true;
         SetBatteryUIVisibility(false);
     }
 
@@ -64,16 +65,22 @@ public class Flashlight : MonoBehaviour
         {
             SetBatteryUIVisibility(false);
         }
+
+        if (IsInItemPos())
+        {
+            flashlightCollider.enabled = false; // Disable the collider
+            SetBatteryUIVisibility(true);
+        }
+        else
+        {
+            flashlightCollider.enabled = true; // Enable the collider
+            SetBatteryUIVisibility(false);
+        }
     }
 
     public void SetNearbyBattery(Battery battery)
     {
-        // Set the nearby battery
         nearbyBattery = battery;
-
-        // You can add additional logic here if needed
-
-        // Example: Automatically collect the battery when nearby
         CollectBattery();
     }
     public void RechargeBattery(float amount)
@@ -81,7 +88,6 @@ public class Flashlight : MonoBehaviour
         // Increase the battery level by the specified amount
         batteryLevel = Mathf.Clamp(batteryLevel + amount, 0f, 100f);
 
-        // Update the battery UI
         UpdateBatteryUI();
     }
     public bool IsInItemPos()
@@ -115,41 +121,84 @@ public class Flashlight : MonoBehaviour
             UpdateBatteryUI();
         }
     }
+    public float GetBatteryLevel()
+    {
+        return batteryLevel;
+    }
 
     private void CollectBattery()
     {
         if (nearbyBattery != null)
         {
-            // Add batteryValue to the flashlight's battery level
+
             RechargeBattery(nearbyBattery.batteryValue);
-
-            // Play collection sound or perform other collection actions
-            Debug.Log("Collecting battery. Battery value: " + nearbyBattery.batteryValue);
-
-            // Remove the battery object from the scene
             Destroy(nearbyBattery.gameObject);
-
-            // Reset nearbyBattery after collecting
             nearbyBattery = null;
         }
     }
-
 
     private void UpdateBatteryUI()
     {
         if (batteryImage != null && batterySprites != null && batterySprites.Length >= 6 && IsInItemPos())
         {
-            int spriteIndex = Mathf.Clamp(Mathf.FloorToInt(batteryLevel / 20f), 0, 5);
+            int spriteIndex = 0;
 
-            batteryImage.sprite = batterySprites[spriteIndex];
+            if (batteryLevel >= 90f)
+            {
+                spriteIndex = 0; // 100%
+            }
+            else if (batteryLevel >= 70f)
+            {
+                spriteIndex = 1; // 80%
+            }
+            else if (batteryLevel >= 50f)
+            {
+                spriteIndex = 2; // 60%
+            }
+            else if (batteryLevel >= 30f)
+            {
+                spriteIndex = 3; // 40%
+            }
+            else if (batteryLevel >= 10f)
+            {
+                spriteIndex = 4; // 20%
+            }
+            else
+            {
+                spriteIndex = 5; // 0%
+            }
+
+            // Check if the flashlight is the active item in the inventory
+            if (IsFlashlightActive())
+            {
+                batteryImage.sprite = batterySprites[spriteIndex];
+                batteryImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                batteryImage.gameObject.SetActive(false);
+            }
         }
     }
 
-    private void SetBatteryUIVisibility(bool isVisible)
+    // Add the following method to check if the flashlight is the active item
+    private bool IsFlashlightActive()
+    {
+        Pickup pickupScript = GetComponentInParent<Pickup>();
+        GameObject currentItem = pickupScript != null ? pickupScript.GetCurrentItem() : null;
+        return currentItem != null && currentItem == gameObject;
+    }
+
+    public void SetBatteryUIVisibility(bool isVisible)
     {
         if (batteryImage != null)
         {
             batteryImage.gameObject.SetActive(isVisible);
         }
+    }
+
+    public void HideBatteryUI()
+    {
+        SetBatteryUIVisibility(false);
     }
 }

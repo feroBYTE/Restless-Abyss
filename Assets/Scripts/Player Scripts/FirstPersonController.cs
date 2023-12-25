@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditorInternal;
 
 
 #if UNITY_EDITOR
@@ -140,9 +139,14 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 jointOriginalPos;
     private float timer = 0;
 
+    private bool isShaking = false;
+    private float shakeDuration = 0.13f;
+    private float shakeIntensity = 0.025f;
+    private float shakeTimer = 0f;
+    private Vector3 originalCameraPosition;
     #endregion
 
-    
+
 
     private void Awake()
     {
@@ -480,7 +484,52 @@ public class FirstPersonController : MonoBehaviour
             hasLanded = true;
         }
 
+        if (!wasGrounded && isGrounded)
+        {
+            // Play the landing sound only if it's not the first landing
+            if (enableLandingSound && landingSoundClip != null && hasLanded)
+            {
+                landingSound.Play();
+            }
+
+            // Set hasLanded to true after the first landing
+            hasLanded = true;
+
+            // Trigger camera shake on landing
+            StartCameraShake(shakeDuration, shakeIntensity);
+        }
         wasGrounded = isGrounded;
+        if (isShaking)
+        {
+            UpdateCameraShake();
+        }
+    }
+
+    private void StartCameraShake(float duration, float intensity)
+    {
+        originalCameraPosition = playerCamera.transform.localPosition;
+        shakeDuration = duration;
+        shakeIntensity = intensity;
+        shakeTimer = 0f;
+        isShaking = true;
+    }
+    private void UpdateCameraShake()
+    {
+        if (shakeTimer < shakeDuration)
+        {
+            // Randomly shake the camera position along the X-axis
+            float offsetX = Random.Range(-1f, 1f) * shakeIntensity;
+            playerCamera.transform.localPosition = originalCameraPosition + new Vector3(offsetX, 0f, 0f);
+
+            // Update the shake timer
+            shakeTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            // Reset the camera position when the shake duration is over
+            playerCamera.transform.localPosition = originalCameraPosition;
+            isShaking = false;
+        }
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object

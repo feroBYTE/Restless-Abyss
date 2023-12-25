@@ -2,27 +2,32 @@ using UnityEngine;
 
 public class Battery : MonoBehaviour
 {
-    public float batteryValue = 40f; 
-
+    public float batteryValue = 40f;
+    public AudioClip collectSound;
     private Camera playerCamera;
 
     private void Start()
     {
-        playerCamera = Camera.main; 
+        playerCamera = Camera.main;
     }
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Flashlight flashlight = FindObjectOfType<Flashlight>();
 
-            if (IsPlayerLookingAtBattery() && IsFlashlightHeld())
+            // Check if the flashlight exists and its battery level is below 100%
+            if (flashlight != null && flashlight.IsInItemPos() && flashlight.GetBatteryLevel() < 100f)
             {
-                CollectBattery();
+                if (IsPlayerLookingAtBattery() && flashlight.IsInItemPos())
+                {
+                    CollectBattery();
+                }
             }
         }
     }
+
 
     private bool IsPlayerLookingAtBattery()
     {
@@ -53,6 +58,12 @@ public class Battery : MonoBehaviour
         if (flashlight != null)
         {
             flashlight.SetNearbyBattery(this);
+
+            // Play the collect battery sound
+            if (flashlight.additionalAudioSource != null && collectSound != null)
+            {
+                flashlight.additionalAudioSource.PlayOneShot(collectSound);
+            }
         }
 
         Destroy(gameObject);
