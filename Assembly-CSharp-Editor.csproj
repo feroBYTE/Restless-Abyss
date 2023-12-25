@@ -64,9 +64,8 @@
     <Analyzer Include="D:\Unity\Unity Editor\2022.3.15f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\Editor\PauseStateHandler.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\Editor\ReadOnlyPropertyDrawer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\Editor\KinematicCharacterMotorEditor.cs" />
+    <Compile Include="Assets\TRN_Gen\Scripts\Editor\TRN_Editor.cs" />
+    <Compile Include="Assets\TRN_Gen\Scripts\Editor\Erosion_Editor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

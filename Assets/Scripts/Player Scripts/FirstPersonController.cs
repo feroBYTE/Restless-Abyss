@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditorInternal;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,7 +13,6 @@ using System.Net;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -56,7 +57,8 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private bool isWalking = false;
-
+    private bool wasGrounded = true;
+    private bool hasLanded = false;
     #region Sprint
 
     public bool enableSprint = true;
@@ -87,6 +89,13 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region Landing Sound Variables
+
+    public bool enableLandingSound = true;
+    public AudioClip landingSoundClip;
+    private AudioSource landingSound;
+
+    #endregion
     #region Jump
 
     public bool enableJump = true;
@@ -98,6 +107,13 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region Jump Sound Variables
+
+    public bool enableJumpSound = true;
+    public AudioClip[] jumpSounds;
+    private AudioSource audioSource;
+
+    #endregion
     #region Crouch
 
     public bool enableCrouch = true;
@@ -126,9 +142,26 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+
+        landingSound = gameObject.AddComponent<AudioSource>();
+        landingSound.playOnAwake = false;
+        landingSound.clip = landingSoundClip;
+        if (audioSource == null)
+        {
+
+            audioSource = GetComponentInChildren<AudioSource>();
+        }
+
+        if (landingSound == null)
+        {
+            landingSound = GetComponentInChildren<AudioSource>();
+        }
 
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -434,6 +467,20 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+
+        if (!wasGrounded && isGrounded)
+        {
+            // Play the landing sound only if it's not the first landing
+            if (enableLandingSound && landingSoundClip != null && hasLanded)
+            {
+                landingSound.Play();
+            }
+
+            // Set hasLanded to true after the first landing
+            hasLanded = true;
+        }
+
+        wasGrounded = isGrounded;
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
@@ -454,13 +501,20 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void Jump()
+
+    public void Jump()
     {
         // Adds force to the player rigidbody to jump
         if (isGrounded)
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
+
+            // Play a random jump sound if enabled
+            if (enableJumpSound && jumpSounds.Length > 0)
+            {
+                PlayRandomJumpSound();
+            }
         }
 
         // When crouched and using toggle system, will uncrouch for a jump
@@ -470,6 +524,11 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    private void PlayRandomJumpSound()
+    {
+        int randomIndex = Random.Range(0, jumpSounds.Length);
+        audioSource.PlayOneShot(jumpSounds[randomIndex]);
+    }
     private void Crouch()
     {
         // Stands player up to full height
@@ -723,6 +782,40 @@ public class FirstPersonControllerEditor : Editor
 
         #endregion
 
+        #region Jump Sound Setup
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Jump Sound Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.enableJumpSound = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump Sound", "Determines if a sound will play when the player jumps."), fpc.enableJumpSound);
+
+        GUI.enabled = fpc.enableJumpSound;
+        SerializedProperty jumpSounds = SerFPC.FindProperty("jumpSounds");
+        EditorGUILayout.PropertyField(jumpSounds, new GUIContent("Jump Sounds", "Array of audio clips to play when jumping"), true);
+        SerFPC.ApplyModifiedProperties();
+
+
+
+        EditorGUILayout.Space();
+
+        #endregion
+
+#if UNITY_EDITOR
+        // Landing Sound Setup
+        GUILayout.Label("Landing Sound Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.enableLandingSound = EditorGUILayout.ToggleLeft(new GUIContent("Enable Landing Sound", "Determines if a sound will play when the player lands."), fpc.enableLandingSound);
+
+        GUI.enabled = fpc.enableLandingSound;
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Landing Sound", "Audio clip to play when landing."));
+        fpc.landingSoundClip = (AudioClip)EditorGUILayout.ObjectField(fpc.landingSoundClip, typeof(AudioClip), false);
+        EditorGUILayout.EndHorizontal();
+        GUI.enabled = true;
+
+        EditorGUILayout.Space();
+#endif
         //Sets any changes from the prefab
         if (GUI.changed)
         {

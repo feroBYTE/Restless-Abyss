@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +15,8 @@ public class FootstepSystem : MonoBehaviour
     private bool wasSprinting = false;
     private bool isTriggered = false;
 
+    private bool isGrounded = false; // Add this variable
+
     void Update()
     {
         float inputMagnitude = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).magnitude;
@@ -30,16 +31,23 @@ public class FootstepSystem : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftShift) && inputMagnitude > 0.5f)
         {
             isSprinting = true;
+            StartCoroutine(SprintCooldown());
         }
 
         // Check if walking state has changed
         isWalking = !isSprinting && inputMagnitude > 0;
 
-        // Play footsteps if walking or sprinting
-        if (isWalking || isSprinting)
+        // Play footsteps if walking or sprinting and grounded
+        if ((isWalking || isSprinting) && isGrounded)
         {
             StartFootsteps();
         }
+    }
+
+    private IEnumerator SprintCooldown()
+    {
+        yield return new WaitForSeconds(3f);
+        isSprinting = false;
     }
 
     private void StartFootsteps()
@@ -61,13 +69,29 @@ public class FootstepSystem : MonoBehaviour
             if (sin > 0.97f && !isTriggered)
             {
                 isTriggered = true;
-                Debug.Log("Footstep Triggered");
                 onFootStep.Invoke();
             }
             else if (isTriggered && sin < -0.97f)
             {
                 isTriggered = false;
             }
+        }
+    }
+
+    // Add the following method to update the grounded state
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.CompareTag("Grass")) // Change "Ground" to the tag of your ground objects
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Grass")) // Change "Ground" to the tag of your ground objects
+        {
+            isGrounded = false;
         }
     }
 }
