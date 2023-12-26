@@ -17,6 +17,7 @@ public class InventoryUI : MonoBehaviour
 
     public List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
+
     private void Start()
     {
         // Initialize the inventory slots with empty sprites
@@ -25,6 +26,27 @@ public class InventoryUI : MonoBehaviour
             inventorySlots[i].sprite = GetEmptySlotSprite();
         }
     }
+
+public void HighlightInventorySlot(int highlightIndex)
+{
+    Color highlightColor = Color.yellow; // White with reduced alpha
+    Color resetColor = Color.white; // Light gray
+
+    for (int i = 0; i < inventorySlots.Length; i++)
+    {
+        if (i == highlightIndex)
+        {
+            // Set a highlight effect for the active item
+            inventorySlots[i].color = highlightColor;
+        }
+        else
+        {
+            // Reset the highlight effect for other items
+            inventorySlots[i].color = resetColor;
+        }
+    }
+}
+
 
     public void UpdateInventory(List<GameObject> inventory)
     {
@@ -71,8 +93,6 @@ public class InventoryUI : MonoBehaviour
 
     private Sprite GetItemSprite(GameObject item, int itemIndex)
     {
-        // Example: You might want to have different sprites for items based on their index
-        // Modify this method according to your specific requirements
         foreach (var inventoryItem in inventoryItems)
         {
             if (inventoryItem.itemObject == item)

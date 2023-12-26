@@ -17,7 +17,7 @@ public class Flashlight : MonoBehaviour
     private Light flashlightLight;
     private AudioSource audioSource;
     private float batteryLevel = 100f;
-    private float batteryDrainRate = 100f / 120f;
+    private float batteryDrainRate = 100f / 180f;
     // private float batteryDrainRate = 15f;
     private Collider flashlightCollider;
     private void Start()

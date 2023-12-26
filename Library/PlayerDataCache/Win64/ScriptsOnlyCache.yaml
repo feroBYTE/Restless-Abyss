@@ -2,13 +2,11 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Battery
-    - CollisionSound
     - FSR.FSR_Data
     - FSR.FSR_Player
     - FSR.FSR_SimpleSurface
     - FirstPersonController
     - Flashlight
-    - FogEffect
     - FootstepSystem
     - InventoryUI
     - Pickup
@@ -116,43 +114,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2218}
     - Class: 114
-      Script: {instanceID: 2880}
+      Script: {instanceID: 2882}
     - Class: 114
-      Script: {instanceID: 4008}
+      Script: {instanceID: 3890}
     - Class: 114
-      Script: {instanceID: 4056}
+      Script: {instanceID: 4012}
     - Class: 114
-      Script: {instanceID: 4076}
+      Script: {instanceID: 4060}
     - Class: 114
-      Script: {instanceID: 4114}
+      Script: {instanceID: 4080}
     - Class: 114
-      Script: {instanceID: 4240}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4244}
     - Class: 114
-      Script: {instanceID: 5232}
+      Script: {instanceID: 4406}
     - Class: 114
-      Script: {instanceID: 5416}
+      Script: {instanceID: 4508}
     - Class: 114
-      Script: {instanceID: 5468}
+      Script: {instanceID: 5238}
     - Class: 114
-      Script: {instanceID: 5484}
+      Script: {instanceID: 5422}
     - Class: 114
-      Script: {instanceID: 6584}
+      Script: {instanceID: 5474}
     - Class: 114
-      Script: {instanceID: 7456}
+      Script: {instanceID: 6590}
     - Class: 114
-      Script: {instanceID: 7686}
+      Script: {instanceID: 7462}
     - Class: 114
-      Script: {instanceID: 7720}
+      Script: {instanceID: 7694}
     - Class: 114
-      Script: {instanceID: 8192}
+      Script: {instanceID: 7728}
     - Class: 114
-      Script: {instanceID: 71710}
-    - Class: 114
-      Script: {instanceID: 129946}
-    - Class: 114
-      Script: {instanceID: 132512}
+      Script: {instanceID: 8200}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -166,6 +160,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 205
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -292,6 +288,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: d7cf341f2ca8ef07374b6e128c753f16
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FlashlightCollisionController
   - hash:
       serializedVersion: 2
       Hash: 06fe5c20ab54bb2680cc82b22eb7988c
@@ -534,6 +536,12 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
+      Hash: 3607e2f6aa28b7173fced11bf263fd9b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerCollision
+  - hash:
+      serializedVersion: 2
       Hash: 552dca338f20933ce362ebbe559a6aa6
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -634,6 +642,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 359a1c86e3971f24fe10e219a8141120
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InventoryUI
   - hash:
       serializedVersion: 2
       Hash: e7e95903ca66d58e1a7cbd71f824e16d
@@ -894,7 +908,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 66aa791e8e626118238cf1ba09f8f21f
+      Hash: 4ff21293eef1dcbb2b43dbde4808211b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Battery
@@ -1038,6 +1052,12 @@ ScriptsOnlyBuild:
     className: FSR_SimpleSurface
   - hash:
       serializedVersion: 2
+      Hash: de1bb9990e0b259c5bb3b79bc15ac6c3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CollisionSound
+  - hash:
+      serializedVersion: 2
       Hash: 9a174471d4db2c0c6d3ac47d2f818db1
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1126,30 +1146,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: d7cf341f2ca8ef07374b6e128c753f16
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: FlashlightCollisionController
-  - hash:
-      serializedVersion: 2
-      Hash: de1bb9990e0b259c5bb3b79bc15ac6c3
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CollisionSound
-  - hash:
-      serializedVersion: 2
-      Hash: 3607e2f6aa28b7173fced11bf263fd9b
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerCollision
-  - hash:
-      serializedVersion: 2
-      Hash: 359a1c86e3971f24fe10e219a8141120
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: InventoryUI
   platform: 19
   scenePathNames:
   - Assets/Scenes/Prologue.unity

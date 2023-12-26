@@ -1,33 +1,77 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battery : MonoBehaviour
 {
     public float batteryValue = 40f;
     public AudioClip collectSound;
     private Camera playerCamera;
+    public Image pickupHandImage;
+    private bool isCollected = false;
 
     private void Start()
     {
         playerCamera = Camera.main;
+
+        if (pickupHandImage == null)
+        {
+            Debug.LogError("Pickup Hand Image not assigned. Assign the UI image in the Inspector.");
+        }
+        else
+        {
+            HidePickupHandImage();
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isCollected)
         {
-            Flashlight flashlight = FindObjectOfType<Flashlight>();
+            // Battery has been collected, stop further updates
+            return;
+        }
 
-            // Check if the flashlight exists and its battery level is below 100%
-            if (flashlight != null && flashlight.IsInItemPos() && flashlight.GetBatteryLevel() < 100f)
+        // Check if the player is looking at the battery and show pickup hand image
+        if (IsPlayerLookingAtBattery())
+        {
+            ShowPickupHandImage();
+
+            // Check for player consuming the battery
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (IsPlayerLookingAtBattery() && flashlight.IsInItemPos())
+                Flashlight flashlight = FindObjectOfType<Flashlight>();
+
+                // Check if the flashlight exists and its battery level is below 100%
+                if (flashlight != null && flashlight.IsInItemPos() && flashlight.GetBatteryLevel() < 100f)
                 {
                     CollectBattery();
                 }
+
+                // Hide the pickup hand image after collecting the battery
+                HidePickupHandImage();
             }
+        }
+        else
+        {
+            HidePickupHandImage();
         }
     }
 
+    private void ShowPickupHandImage()
+    {
+        if (pickupHandImage != null)
+        {
+            pickupHandImage.gameObject.SetActive(true);
+        }
+    }
+
+    private void HidePickupHandImage()
+    {
+        if (pickupHandImage != null)
+        {
+            pickupHandImage.gameObject.SetActive(false);
+        }
+    }
 
     private bool IsPlayerLookingAtBattery()
     {
@@ -45,13 +89,6 @@ public class Battery : MonoBehaviour
         return false;
     }
 
-    private bool IsFlashlightHeld()
-    {
-
-        Flashlight flashlight = FindObjectOfType<Flashlight>();
-        return flashlight != null && flashlight.IsInItemPos();
-    }
-
     private void CollectBattery()
     {
         Flashlight flashlight = FindObjectOfType<Flashlight>();
@@ -66,26 +103,10 @@ public class Battery : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
-    }
+        // Mark the battery as collected
+        isCollected = true;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-        }
-    }
-
-    private void PlayCollectionSound()
-    {
-
+        // Destroy the battery after a short delay (adjust the delay as needed)
+        Destroy(gameObject, 0.1f);
     }
 }

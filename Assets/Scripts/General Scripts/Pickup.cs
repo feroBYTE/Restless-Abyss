@@ -50,7 +50,7 @@ public class Pickup : MonoBehaviour
     private void Update()
     {
         CheckItems();
-
+        UpdateInventoryUIHighlight();
         if (CanGrab())
         {
             pickupHandImage.SetActive(true); // Show the pickup hand image
@@ -68,8 +68,7 @@ public class Pickup : MonoBehaviour
         }
         else
         {
-            pickupHandImage.SetActive(false); // Hide the pickup hand image
-                                              // Add the following line to hide the battery UI when the flashlight is not in hand
+            pickupHandImage.SetActive(false);
             HideBatteryUI();
         }
 
@@ -93,14 +92,29 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    private void UpdateInventoryUIHighlight()
+    {
+        // Highlight the current active item in the inventory UI if there are items
+        if (inventory.Count > 0)
+        {
+            inventoryUI.HighlightInventorySlot(currentItemIndex);
+        }
+        else
+        {
+            // Reset the highlight effect if there are no items in the inventory
+            inventoryUI.HighlightInventorySlot(-1);
+        }
+    }
+
     private void HideBatteryUI()
     {
         Flashlight flashlight = GetActiveFlashlight();
-        if (flashlight != null)
+        if (flashlight != null && inventory.Count > 0) // Check if there is an active item
         {
             flashlight.HideBatteryUI();
         }
     }
+
 
     private Flashlight GetActiveFlashlight()
     {
@@ -140,7 +154,6 @@ public class Pickup : MonoBehaviour
         Vector3 toObject = objectPosition - Camera.main.transform.position;
         float angle = Vector3.Angle(Camera.main.transform.forward, toObject);
 
-        // You can adjust the threshold angle based on your preference
         float maxViewAngle = 60f;
 
         return angle <= maxViewAngle;
@@ -169,6 +182,9 @@ public class Pickup : MonoBehaviour
                 // Trigger the OnActiveItemChanged event
                 OnActiveItemChanged?.Invoke(currentItemIndex);
 
+                // Hide the battery UI for all items
+                HideAllBatteryUI();
+
                 // Ensure that the battery UI is correctly set when picking up the flashlight
                 SetBatteryUIVisibilityForActiveItem();
 
@@ -187,6 +203,18 @@ public class Pickup : MonoBehaviour
                 {
                     inventoryUI.UpdateInventory(inventory);
                 }
+            }
+        }
+    }
+
+    private void HideAllBatteryUI()
+    {
+        foreach (var item in inventory)
+        {
+            Flashlight flashlight = item.GetComponent<Flashlight>();
+            if (flashlight != null)
+            {
+                flashlight.HideBatteryUI();
             }
         }
     }
@@ -230,8 +258,14 @@ public class Pickup : MonoBehaviour
             // Trigger the OnActiveItemChanged event
             OnActiveItemChanged?.Invoke(currentItemIndex);
 
+            // Update the inventory UI in the InventoryUI component
+            inventoryUI.UpdateInventory(inventory);
+
+            // Ensure that the battery UI is correctly set when dropping the flashlight
+            HideBatteryUI();
         }
     }
+
 
 
     private GameObject HitObject()

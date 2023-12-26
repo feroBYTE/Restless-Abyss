@@ -140,7 +140,7 @@ public class FirstPersonController : MonoBehaviour
     private float timer = 0;
 
     private bool isShaking = false;
-    private float shakeDuration = 0.13f;
+    private float shakeDuration = 0.15f;
     private float shakeIntensity = 0.025f;
     private float shakeTimer = 0f;
     private Vector3 originalCameraPosition;
