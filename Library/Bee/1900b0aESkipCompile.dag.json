@@ -24,7 +24,7 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json",
       "DisplayName": "BuildPlayerDataGenerator TypeDb-All",
-      "Action": "\"D:/Unity/Unity Editor/2022.3.15f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"D:/Unity/Unity Editor/2022.3.15f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Assembly-CSharp.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Autodesk.Fbx.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\FbxBuildTestAssets.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.Formats.Fbx.Runtime.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.Timeline.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\UnityEngine.UI.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.4\\lib\\ReportGenerator\\ReportGeneratorMerged.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.visualscripting@1.9.1\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.4\\lib\\ReportGenerator\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.visualscripting@1.9.1\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"D:/Unity/Unity Editor/2022.3.15f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"D:/Unity/Unity Editor/2022.3.15f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Assembly-CSharp.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Autodesk.Fbx.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\FbxBuildTestAssets.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.Formats.Fbx.Runtime.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.InputSystem.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.InputSystem.ForUI.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.InputSystem.TestFramework.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.Timeline.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\\UnityEngine.UI.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.4\\lib\\ReportGenerator\\ReportGeneratorMerged.dll\" -a=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.visualscripting@1.9.1\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"D:\\Unity\\Unity Editor\\2022.3.15f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\ScriptAssemblies\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.4\\lib\\ReportGenerator\" -s=\"F:\\.UNITY\\Restless Abyss\\Library\\PackageCache\\com.unity.visualscripting@1.9.1\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "D:/Unity/Unity Editor/2022.3.15f1/Editor/Data/Tools/netcorerun/netcorerun.exe",
         "D:/Unity/Unity Editor/2022.3.15f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
@@ -32,6 +32,9 @@
         "Library/ScriptAssemblies/Autodesk.Fbx.dll",
         "Library/ScriptAssemblies/FbxBuildTestAssets.dll",
         "Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll",
+        "Library/ScriptAssemblies/Unity.InputSystem.dll",
+        "Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll",
+        "Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll",
         "Library/ScriptAssemblies/Unity.TextMeshPro.dll",
         "Library/ScriptAssemblies/Unity.Timeline.dll",
         "Library/ScriptAssemblies/Unity.VisualScripting.Core.dll",
@@ -200,6 +203,15 @@
     },
     {
       "File": "Library/ScriptAssemblies/Unity.Formats.Fbx.Runtime.dll"
+    },
+    {
+      "File": "Library/ScriptAssemblies/Unity.InputSystem.dll"
+    },
+    {
+      "File": "Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll"
+    },
+    {
+      "File": "Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll"
     },
     {
       "File": "Library/ScriptAssemblies/Unity.TextMeshPro.dll"

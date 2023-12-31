@@ -13,6 +13,7 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
     #region Camera Movement Variables
+    public AudioClip silentLandingSound;
 
     public Camera playerCamera;
     public Vector3 sprintBarOffset = new Vector3(0f, 0f, 0f);
@@ -93,7 +94,7 @@ public class FirstPersonController : MonoBehaviour
     public bool enableLandingSound = true;
     public AudioClip landingSoundClip;
     private AudioSource landingSound;
-
+    private bool isFirstLanding = true;
     #endregion
     #region Jump
 
@@ -489,7 +490,18 @@ public class FirstPersonController : MonoBehaviour
             // Play the landing sound only if it's not the first landing
             if (enableLandingSound && landingSoundClip != null && hasLanded)
             {
-                landingSound.Play();
+                if (isFirstLanding)
+                {
+                    // Play a silent clip on the first landing
+                    landingSound.PlayOneShot(silentLandingSound);
+                    isFirstLanding = false;
+                }
+                else
+                {
+                    // Play the actual landing sound on subsequent landings
+                    landingSound.PlayOneShot(landingSoundClip);
+                }
+
             }
 
             // Set hasLanded to true after the first landing
@@ -558,7 +570,7 @@ public class FirstPersonController : MonoBehaviour
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
-
+            isFirstLanding = true;
             // Play a random jump sound if enabled
             if (enableJumpSound && jumpSounds.Length > 0)
             {
@@ -865,6 +877,26 @@ public class FirstPersonControllerEditor : Editor
 
         EditorGUILayout.Space();
 #endif
+        GUILayout.Label("Landing Sound Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.enableLandingSound = EditorGUILayout.ToggleLeft(new GUIContent("Enable Landing Sound", "Determines if a sound will play when the player lands."), fpc.enableLandingSound);
+
+        GUI.enabled = fpc.enableLandingSound;
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Landing Sound", "Audio clip to play when landing."));
+        fpc.landingSoundClip = (AudioClip)EditorGUILayout.ObjectField(fpc.landingSoundClip, typeof(AudioClip), false);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(new GUIContent("Silent Landing Sound", "Silent audio clip to play on the first landing."));
+        fpc.silentLandingSound = (AudioClip)EditorGUILayout.ObjectField(fpc.silentLandingSound, typeof(AudioClip), false);
+        EditorGUILayout.EndHorizontal();
+
+        GUI.enabled = true;
+
+        EditorGUILayout.Space();
+
         //Sets any changes from the prefab
         if (GUI.changed)
         {
