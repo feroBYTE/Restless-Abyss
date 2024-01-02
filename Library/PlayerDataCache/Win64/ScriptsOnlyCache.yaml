@@ -9,14 +9,19 @@ ScriptsOnlyBuild:
     - FirstPersonController
     - Flashlight
     - FootstepSystem
+    - HideCursor
     - InventoryUI
+    - MainMenu
     - Pickup
     - PlayerCollision
     - PositionFollower
     - Prologue
     - RotationFollower
+    - SoundManager
     - TimelineController
     - ViewBobbing
+    Unity.Formats.Fbx.Editor.dll:
+    - UnityEditor.Formats.Fbx.Exporter.ExportSettings
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.InputActionAsset
     - UnityEngine.InputSystem.InputActionReference
@@ -61,9 +66,11 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
   serializedClasses:
     Assembly-CSharp:
     - FSR.FSR_Data/SurfaceType
@@ -106,8 +113,29 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
+    - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
+    - UnityEngine.UI.SpriteState
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: CloseOptions
+  - assembly: Assembly-CSharp
+    fullTypeName: SoundManager
+    methodName: ChangeVolume
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: PlayGame
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: QuitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: OpenOptions
   - assembly: Assembly-CSharp
     fullTypeName: FSR.FSR_Player
     methodName: step
@@ -125,8 +153,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -142,45 +168,41 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1560}
+      Script: {instanceID: 1564}
     - Class: 114
-      Script: {instanceID: 1608}
+      Script: {instanceID: 1612}
     - Class: 114
-      Script: {instanceID: 2282}
-    - Class: 114
-      Script: {instanceID: 2792}
-    - Class: 114
-      Script: {instanceID: 2808}
+      Script: {instanceID: 2796}
     - Class: 114
       Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3014}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 3924}
+      Script: {instanceID: 3020}
     - Class: 114
-      Script: {instanceID: 4068}
+      Script: {instanceID: 3212}
     - Class: 114
-      Script: {instanceID: 4104}
+      Script: {instanceID: 3932}
     - Class: 114
-      Script: {instanceID: 4544}
+      Script: {instanceID: 4052}
     - Class: 114
-      Script: {instanceID: 4834}
+      Script: {instanceID: 4078}
     - Class: 114
-      Script: {instanceID: 5228}
+      Script: {instanceID: 4114}
     - Class: 114
-      Script: {instanceID: 5642}
+      Script: {instanceID: 5238}
     - Class: 114
-      Script: {instanceID: 6474}
+      Script: {instanceID: 5652}
     - Class: 114
-      Script: {instanceID: 7282}
+      Script: {instanceID: 6484}
     - Class: 114
-      Script: {instanceID: 7590}
+      Script: {instanceID: 7292}
     - Class: 114
-      Script: {instanceID: 8070}
+      Script: {instanceID: 7600}
     - Class: 114
-      Script: {instanceID: 24804}
+      Script: {instanceID: 8080}
     - Class: 114
-      Script: {instanceID: 24820}
+      Script: {instanceID: 8446}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -198,6 +220,73 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 320
+      Script: {instanceID: 0}
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1564}
+    - Class: 114
+      Script: {instanceID: 1612}
+    - Class: 114
+      Script: {instanceID: 2286}
+    - Class: 114
+      Script: {instanceID: 2796}
+    - Class: 114
+      Script: {instanceID: 2942}
+    - Class: 114
+      Script: {instanceID: 3020}
+    - Class: 114
+      Script: {instanceID: 3356}
+    - Class: 114
+      Script: {instanceID: 4078}
+    - Class: 114
+      Script: {instanceID: 4554}
+    - Class: 114
+      Script: {instanceID: 4844}
+    - Class: 114
+      Script: {instanceID: 5566}
+    - Class: 114
+      Script: {instanceID: 5652}
+    - Class: 114
+      Script: {instanceID: 6484}
+    - Class: 114
+      Script: {instanceID: 7292}
+    - Class: 114
+      Script: {instanceID: 8080}
+    - Class: 114
+      Script: {instanceID: 8492}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/Prologue.unity:
     - Class: 1
@@ -241,41 +330,41 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1560}
+      Script: {instanceID: 1564}
     - Class: 114
-      Script: {instanceID: 1608}
+      Script: {instanceID: 1612}
     - Class: 114
-      Script: {instanceID: 2792}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 3014}
+      Script: {instanceID: 3020}
     - Class: 114
-      Script: {instanceID: 4134}
+      Script: {instanceID: 4144}
     - Class: 114
-      Script: {instanceID: 4270}
+      Script: {instanceID: 4280}
     - Class: 114
-      Script: {instanceID: 4328}
+      Script: {instanceID: 4338}
     - Class: 114
-      Script: {instanceID: 4356}
+      Script: {instanceID: 4366}
     - Class: 114
-      Script: {instanceID: 4406}
+      Script: {instanceID: 4416}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4728}
     - Class: 114
-      Script: {instanceID: 5846}
+      Script: {instanceID: 5856}
     - Class: 114
-      Script: {instanceID: 5906}
+      Script: {instanceID: 5916}
     - Class: 114
-      Script: {instanceID: 6850}
+      Script: {instanceID: 6860}
     - Class: 114
-      Script: {instanceID: 7146}
+      Script: {instanceID: 7156}
     - Class: 114
-      Script: {instanceID: 8130}
+      Script: {instanceID: 8140}
     - Class: 114
-      Script: {instanceID: 8398}
+      Script: {instanceID: 8408}
     - Class: 114
-      Script: {instanceID: 8432}
+      Script: {instanceID: 8442}
     - Class: 114
-      Script: {instanceID: 8958}
+      Script: {instanceID: 8972}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -501,6 +590,12 @@ ScriptsOnlyBuild:
     className: MoveCamera
   - hash:
       serializedVersion: 2
+      Hash: 581afc79542adad0cc8ba294b51898c3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: fce9b835d1e8b08e7ecea8da19f21986
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -559,6 +654,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnDropdownValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 54139e0e4a6c0863a3f29f48ada0c6b6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TimelineController
   - hash:
       serializedVersion: 2
       Hash: b838cbada0b03f1cfbaebc8e124f4f39
@@ -697,6 +798,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Flow
     namespaceName: Unity.VisualScripting
     className: ScriptGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: e8e0fe95646222b35db4b715e45a2370
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CanvasTimelineController
   - hash:
       serializedVersion: 2
       Hash: 42284ecb06b05bfc619be3758fa5dd7a
@@ -1395,10 +1502,22 @@ ScriptsOnlyBuild:
     className: FSR_Player
   - hash:
       serializedVersion: 2
+      Hash: b97918d8f95010c423cda8853f9b1fe4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HideCursor
+  - hash:
+      serializedVersion: 2
       Hash: b30c8635462e66ac20f4241106119f77
     assemblyName: Unity.VisualScripting.State
     namespaceName: Unity.VisualScripting
     className: StateMachine
+  - hash:
+      serializedVersion: 2
+      Hash: 47ef00c9980aa1519dfe16313eb25027
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SoundManager
   - hash:
       serializedVersion: 2
       Hash: 568292fb7ea6c4f7a667e5ff76bc7e85
@@ -1459,20 +1578,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 54139e0e4a6c0863a3f29f48ada0c6b6
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: TimelineController
-  - hash:
-      serializedVersion: 2
-      Hash: e8e0fe95646222b35db4b715e45a2370
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CanvasTimelineController
   platform: 19
   scenePathNames:
+  - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainIntro.unity
   - Assets/Scenes/Prologue.unity
-  playerPath: C:/Users/Feroov/Desktop/game/Restless Abyss.exe
+  playerPath: C:/Users/Feroov/Desktop/Game/Restless Abyss.exe

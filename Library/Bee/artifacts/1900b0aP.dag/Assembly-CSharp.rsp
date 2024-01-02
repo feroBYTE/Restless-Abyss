@@ -336,6 +336,9 @@
 "Assets/Scripts/Player Scripts/RotationFollower.cs"
 "Assets/Scripts/Player Scripts/ViewBobbing.cs"
 "Assets/Scripts/Util/CanvasTimelineController.cs"
+"Assets/Scripts/Util/HideCursor.cs"
+"Assets/Scripts/Util/MainMenu.cs"
+"Assets/Scripts/Util/SoundManager.cs"
 "Assets/Scripts/Util/TImelineController.cs"
 -langversion:9.0
 

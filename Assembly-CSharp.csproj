@@ -83,6 +83,9 @@
     <Compile Include="Assets\Scripts\Footstep Surface Reader\Scripts\FSR_Data.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\General Scripts\Flashlight.cs" />
+    <Compile Include="Assets\Scripts\Util\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Util\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Util\HideCursor.cs" />
     <Compile Include="Assets\Scripts\Loader Scripts\Prologue.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\RotationFollower.cs" />
     <Compile Include="Assets\Scripts\General Scripts\Pickup.cs" />
