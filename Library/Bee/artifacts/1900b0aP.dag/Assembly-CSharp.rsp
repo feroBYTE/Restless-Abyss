@@ -326,6 +326,7 @@
 "Assets/Scripts/General Scripts/FogEffect.cs"
 "Assets/Scripts/General Scripts/InventoryUI.cs"
 "Assets/Scripts/General Scripts/Pickup.cs"
+"Assets/Scripts/General Scripts/PickupItemEffect.cs"
 "Assets/Scripts/General Scripts/PlayerCollision.cs"
 "Assets/Scripts/Loader Scripts/Prologue.cs"
 "Assets/Scripts/Player Scripts/FirstPersonController.cs"
@@ -338,6 +339,7 @@
 "Assets/Scripts/Util/CanvasTimelineController.cs"
 "Assets/Scripts/Util/HideCursor.cs"
 "Assets/Scripts/Util/MainMenu.cs"
+"Assets/Scripts/Util/PauseManager.cs"
 "Assets/Scripts/Util/SoundManager.cs"
 "Assets/Scripts/Util/TImelineController.cs"
 -langversion:9.0
